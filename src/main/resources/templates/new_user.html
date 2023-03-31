@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Management System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<header>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<ul class="navbar-nav">
+				<li><a th:href = "@{/}" 
+					class="navbar-brand">User List</a></li>
+				<li><a th:href = "@{/showNewUserForm}"
+					class="navbar-brand">Add New User</a></li>
+				<li><a th:href = "@{/posts}" 
+					class="navbar-brand">List Posts</a></li>
+			</ul>
+		</nav>
+	</header>
+<body>
+	<div class="container my-2">
+		<h1 style="text-align:center">New User Form</h1>
+		<form action = "#" th:action="@{/saveUser}" th:object ="${user}" method="POST" >
+			<input type = "text" th:field = "*{fullName}"
+				placeholder="User's Full Name" class="form-control mb-4 col-4">
+				
+			<input type = "text" th:field = "*{email}"
+				placeholder="User's Email" class="form-control mb-4 col-4">
+			
+			<input type = "text" th:field = "*{phone}"
+				placeholder="User's Phone Number" class="form-control mb-4 col-4">
+			
+			<button type="submit" class="btn btn-info col-2">Save User</button>
+		</form>
+		
+	</div>
+</body>
+</html>

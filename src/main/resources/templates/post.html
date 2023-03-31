@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Management System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+<header>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<ul class="navbar-nav">
+				<li><a th:href = "@{/}" 
+					class="navbar-brand">User List</a></li>
+				<li><a th:href = "@{/showNewUserForm}"
+					class="navbar-brand">Add New User</a></li>
+				<li><a th:href = "@{/posts}" 
+					class="navbar-brand">List Posts</a></li>
+			</ul>
+		</nav>
+	</header>
+<div class="container my-2">
+	<h1 style="text-align:center">Post List</h1>
+	<div class="mb-3">
+				<form action="#" th:action="@{/selectPostById}" th:id="id" method="get">
+					<fieldset class="form-group">
+						<input name = "id" type="search"
+							class="form-control" required="required" placeholder="Post's ID">
+					</fieldset>
+					<button type="submit" class="btn btn-success">Find</button>
+				</form>
+			</div>
+	<table border="1" class="table table-striped table-responsive-md">
+		<thead>
+			<tr>
+				<th>PostID</th>
+				<th>Title</th>
+				<th>Content</th>
+				<th>User</th>
+				<th>Created At</th>
+				<th>Updated At</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody th:each ="post: ${listPosts}">
+		<tr>
+			<td th:text = "${post.id}"></td>
+			<td th:text = "${post.title}"></td>
+			<td th:text = "${post.content}"></td>
+			<td th:text = "${post.user.getId()}"></td>
+			<td th:text = "${post.createdAt}"></td>
+			<td th:text = "${post.updatedAt}"></td>
+			
+			<td>
+					<a th:href = "@{/showUpdatePostForm/post/{postId}(postId=${post.id})}" class="btn btn-primary">Update</a>
+					<a th:href = "@{/deletePost/{id}(id=${post.id})}" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+			
+			
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
